@@ -2,30 +2,46 @@ import IStack from "../interfaces/stack.interface";
 
 class Stack<T> implements IStack<T> {
   constructor(size?: number) {
-    this.size = size ?? undefined;
-    this.contents = new Array<T>();
-    this.isEmpty = true;
-    this.isFull = size === 0 ? true : false;
+    this._size = size ?? undefined;
+    this._contents = new Array<T>();
+    this._isEmpty = true;
+    this._isFull = size === 0 ? true : false;
   }
 
-  contents: Array<T>;
-  private readonly size: number | undefined;
+  private _contents: Array<T>;
+  private readonly _size: number | undefined;
+  private _isEmpty: boolean;
+  private _isFull: boolean;
+
   private checkFullEmpty(): void {
-    this.isEmpty = this.contents.length === 0 ? true : false;
-    this.isFull = this.contents.length === this.size ? true : false;
+    this.isEmpty = this._contents.length === 0 ? true : false;
+    this.isFull = this._contents.length === this._size ? true : false;
   }
 
   /*
    * Instance variable - checks is the stack is empty.
    * @returns {boolean}  Is the stack empty?
    */
-  isEmpty: boolean;
+  get isEmpty(): boolean {
+    return this._isEmpty;
+  }
+
+  private set isEmpty(boolean) {
+    this._isEmpty = boolean;
+  }
 
   /*
    * Instance variable - checks is the stack is full.
    * @returns {boolean}  Is the stack full?
    */
-  isFull: boolean;
+
+  get isFull(): boolean {
+    return this._isFull;
+  }
+
+  private set isFull(boolean) {
+    this._isFull = boolean;
+  }
 
   /*
    * Pushes an item to the stack.
@@ -33,7 +49,7 @@ class Stack<T> implements IStack<T> {
    */
   push(item: T): void {
     if (this.isFull) throw new Error("Can't push to a full stack");
-    this.contents.push(item);
+    this._contents.push(item);
     this.checkFullEmpty();
   }
 
@@ -43,7 +59,7 @@ class Stack<T> implements IStack<T> {
    */
   pop(): T {
     if (this.isEmpty) throw new Error("Can't pop from an empty stack");
-    let result = this.contents.pop() as T;
+    let result = this._contents.pop() as T;
     this.checkFullEmpty();
     return result;
   }
@@ -54,7 +70,7 @@ class Stack<T> implements IStack<T> {
    */
   peek(): T {
     if (this.isEmpty) throw new Error("Can't peek an empty stack");
-    return this.contents[this.contents.length - 1];
+    return this._contents[this._contents.length - 1];
   }
 }
 
