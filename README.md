@@ -4,7 +4,7 @@ Done as a self-imposed exercise.
 
 ## TODO
 - [x] Stack
-- [ ] Queue
+- [x] Queue
 - [ ] Circular queue
 - [ ] Linked list
 - [ ] Hash table

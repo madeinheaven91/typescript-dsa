@@ -1,7 +1,8 @@
 export default interface IQueue<T> {
-  enqueue(item: T): void;
-  dequeue(): T;
-  peek(): T;
+  push(item: T): void;
+  pop(): T;
+  front(): T;
+  back(): T;
   isEmpty: boolean;
-  isFull: boolean;
+  size: number;
 }
