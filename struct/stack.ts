@@ -1,6 +1,6 @@
 import IStack from "../interfaces/stack.interface";
 
-class Stack<T> implements IStack<T> {
+export default class Stack<T> implements IStack<T> {
   constructor(size?: number) {
     this._size = size ?? undefined;
     this._contents = new Array<T>();
@@ -73,5 +73,3 @@ class Stack<T> implements IStack<T> {
     return this._contents[this._contents.length - 1];
   }
 }
-
-export default Stack;
